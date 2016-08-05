@@ -1,0 +1,370 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: url("../imgs/background2.png");
+	background-attachment: fixed;
+
+	min-width: 20em;
+	min-height: 10em;
+	font-size: 12pt;
+}
+
+a {
+	color: rgb(102, 153, 204);
+}
+
+header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 2.25em;
+	z-index: 99;
+
+	background: none;
+
+	line-height: 2.25em;
+
+	-webkit-transition: all 0.25s ease;
+	-moz-transition: all 0.25s ease;
+	-o-transition: all 0.25s ease;
+	transition: all 0.25s ease;
+}
+
+header.header_scrolled {
+	background: rgba(234, 234, 234, 0.95);
+}
+
+.header_top {
+	margin-top: 2.25em
+}
+
+header span {
+	padding: 0 0.5em;
+	display: inline-block;
+
+	color: #000;
+	text-decoration: none;
+	text-shadow: 0 0.1em 0 #FFF, 0 -0.1em 0 #FFF, 0 0 0.1em 0 #FFF, 0 0 -0.1em 0 #FFF;
+
+	cursor: pointer;
+}
+
+header span#hide_navbar {
+	margin-right: -0.5em;
+	display: none;
+	float: left;
+	padding: 0 0.5em;
+}
+
+header div#control_container {
+	position: absolute;
+	float: right;
+	right: 0;
+	top: 0;
+	max-width: 10em;
+}
+
+header span#logo {
+	float: left;
+
+	font-family: 'Generic';
+	color: #353535;
+}
+
+header span#logo:before {
+	content: 'TakeMyIdea';
+}
+
+header div#search {
+	top: 0;
+	right: 10em;
+	float: left;
+	min-width: none;
+	height: 100%;
+}
+
+header div#search input[type='text'] {
+	background: none;
+	border: none;
+	padding: 0 1em;
+	width: 100%;
+	height: 100%;
+}
+
+div#loading_indicator {
+	position: fixed;
+	margin-left: -5em;
+	top: 0;
+	left: 50%;
+	padding: 0.5em 1em;
+	z-index: 100;
+
+	background: rgba(240, 240, 240, 0.97);
+	border-radius: 0 0 0.5em 0.5em;
+}
+
+div#main {
+	position: relative;
+	margin-left: 16em;
+	max-width: 60em;
+	min-width: 20em;
+	z-index: 2;
+}
+
+nav {
+	position: fixed;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	overflow: auto;
+	margin-left: 0;
+	width: 16em;
+	z-index: 50;
+
+	background: none;
+
+	-webkit-transition: all 0.5s ease;
+	-moz-transition: all 0.5s ease;
+	-o-transition: all 0.5s ease;
+	transition: all 0.5s ease;
+}
+
+nav.unhidden {
+	margin-left: 0;
+
+	background: none;
+}
+
+@media (max-width: 72em) {
+	nav {
+		margin-left: -16em;
+
+		background:rgba(234, 234, 234, 0.95);
+	}
+
+	nav.unhidden {
+		margin-left: 0;
+
+		background: rgba(234, 234, 234, 0.95);
+	}
+
+	div#main {
+		margin-left: 0;
+	}
+
+	header span#hide_navbar {
+		display: inline-block;
+	}
+
+	header span#logo:before {
+		content: 'TMI';
+	}
+}
+
+nav ul {
+	padding-left: 1em;
+
+	list-style: none;
+}
+
+nav ul#categories {
+	border-top: 0.1em solid #d0d0d0;
+}
+
+nav ul li {
+	display: table;
+	padding: 0.5em;
+}
+
+nav ul li a {
+	display: block;
+}
+
+nav ul li a:hover {
+	text-decoration: none;
+}
+
+.header_dropdown {
+	position: fixed;
+	display: none;
+	top: 0;
+	right: 0;
+	z-index: 98;
+
+	background: #FFFFFF;
+	border: 0.2em solid #000000;
+}
+
+.header_dropdown ul {
+	float: right;
+
+	outline: 0.15em solid #000000;
+}
+
+.header_dropdown a {
+	display: block;
+	padding: 0.75em 1em;
+
+	color: #000000;
+	text-decoration: none;
+}
+
+.header_dropdown a:hover {
+	background: #EAEAEA;
+}
+
+.header_dropdown input {
+	margin: 0.25em 0.25em 0 0.25em;
+	padding: 0.5em 0.75em;
+
+	background: rgba(255, 255, 255, 0.75);
+	box-shadow: inset 0 0 0.1em rgba(0,0,0,0.5);
+	border: 0;
+	border-radius: 0.5em;
+
+	transition: all 0.25s ease;
+}
+
+.header_dropdown input:focus {
+	box-shadow: inset 0 0 0.25em rgba(102, 153, 204, 1);
+}
+
+form#register_form {
+	display: none;
+}
+
+article {}
+
+div#up {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
+	padding: 1em;
+
+	text-align: center;
+}
+
+div#up span {
+	font-size: 2.5em;
+	color: rgb(123, 123, 123);
+}
+
+/*** Profile ***/
+
+div#profile_options {
+	position: fixed;
+	right: 0;
+}
+
+div#profile_options ul {
+	list-style: none;
+}
+
+
+/*** Content ***/
+
+article div.item {
+	margin-bottom: 5em;
+	padding: 1em 3em;
+
+	background: #FFF;
+	border-bottom: 0.1em solid #c9c9c9;
+	box-shadow: 0.01em 0 5em rgba(0, 0, 0, 0.15);
+}
+
+/*** Thread ***/
+
+article div.thread {}
+
+article h1.title {
+	margin: 0 0 0.25em -1em;
+}
+
+article h6 {
+	display: inline-block;
+	color: #B5B5B5;
+	font-size: 8pt;
+}
+
+article h6.date {
+	margin-left: 1em;
+}
+
+article h6.author {}
+
+article div.description {}
+
+article div.description p {
+	margin: 1em 0 1em 0;
+}
+
+article .social_container {
+	margin-right: 1em;
+	text-align: right;
+	padding: 1em;
+}
+
+article .social_container div {
+	position: relative;
+	display: inline-block;
+
+	font-size: 11pt;
+}
+
+article .icon {
+	color: #7f7f7f;
+	padding: 0 1em;
+	cursor: default;
+}
+
+article div.likes.icon {
+	cursor: pointer;
+}
+
+article span.liked {
+	color: rgb(102, 153, 204);
+}
+
+
+/*** Comments ***/
+
+article div.comments {
+	padding: 1em 1em 1em 4em;
+	border-top: 0.1em solid #c9c9c9;
+}
+
+article div.comments p.title {
+	color: #B5B5B5;
+	font-size: 120%;
+}
+
+
+/*** New idea ***/
+
+article div.add_idea {}
+
+article div.add_idea p {
+	margin: 0.5em 0;
+
+	font-size: 11pt;
+}
+
+
+/*** Footer ***/
+
+footer {
+	padding: 1em;
+	color: #898989;
+	font-size: 9pt;
+
+	text-align: center;
+}
+
+footer p {
+	padding: 0.25em 0;
+}

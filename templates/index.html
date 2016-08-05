@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>TakeMyIdea</title>
+
+	<script type="text/javascript" src="{% static 'js/jquery/main.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/ckeditor/ckeditor.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery/cookie.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery/ckeditor.js' %}"></script>
+
+	<script type="text/javascript" src="{% static 'js/csrf.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/links.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/features.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/dialog.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/main.min.js' %}"></script>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'css/fonts.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.min.css' %}">
+
+	<link rel="shortcut icon" type="image/png" href="{% static 'imgs/favicon3.ico' %}"/>
+
+	<!--[if lte IE 9]>
+		<meta http-equiv="Refresh" content="0;url=http://getfirefox.com/">
+	<![endif]-->
+</head>
+
+<body>
+	{% csrf_token %}
+
+	<noscript>
+		<div style="background: white; position: fixed; margin: 20px; top: 100px; z-index: 110; text-align: center;">Извините, но использования нашего сайта не предоставляется возможным без использования Javascript.</div>
+	</noscript>
+
+	<header>
+		<span id="hide_navbar" class="icon-menu"></span>
+
+		<span id="logo"><span class="icon-arrows-cw" id="loading_icon"></span></span>
+
+		<div id="search"><input type="text" placeholder="Поиск..." title="Да, я знаю, сейчас поиск отстой, я переделаю чуть позже."></input></div>
+
+		<div id="control_container">
+			<span id="profile_button"><span class='icon-user'></span><span id="welcome_profile_msg">{% if user.is_authenticated %} {{ user.username }} {% else %} Гость {% endif %} </span></span>
+		</div>
+	</header>
+
+	<div id="loading_indicator" class="header_top">Загрузка...</div>
+
+	<div id="profile_options" class="header_top header_dropdown">
+		<ul>{% if user.is_authenticated %}
+			<li><a href="#addIdea?" id="add_new_button"><span class="icon-plus"></span>Добавить идею</a></li>
+			<li><a href="#settings?" id="settings_button"><span class="icon-cog"></span>Настройки</a></li>
+			<li><a href="javascript:;" id="logout_button"><span class="icon-off"></span>Выход</a></li>
+		{% else %}<li><a href="javascript:;" id="login_button"><span class="icon-login"></span>Вход</a></li>
+			<li><a href="javascript:;" id="register_button"><span class="icon-off"></span>Регистрация</a></li>
+		{% endif %}</ul>
+
+		{% if user.is_authenticated %}
+		<input type='hidden' name='login_status' style="display: none;" value="logged" />
+		{% else %}
+		<input type='hidden' name='login_status' style="display: none;" value="guest" />
+
+		<form id="login_form" name="login">
+			<input type="text" id="login_email_input" placeholder="Почта">
+			<input type="password" id="login_password_input" placeholder="Пароль">
+
+			<input type="submit" value="Войти">
+		</form>
+
+		<form id="register_form" name="register">
+			<input type="text" id="register_username_input" placeholder="Имя пользователя">
+			<input type="text" id="register_email_input" placeholder="Почта">
+			<input type="password" id="register_password_input" placeholder="Пароль">
+
+			<input type="submit" value="Зарегистрироваться!">
+		</form>
+		{% endif %}
+	</div>
+
+	<nav status="showed" id="navigation" class="header_top">
+		<ul>
+			<li><a href="#genPopular?0">Популярные</a></li>
+			<li><a href="#genLast?0">Последние</a></li>
+			<li><a href="#genRandom?0">Случайные</a></li>
+		</ul>
+		<ul id="categories"></ul>
+	</nav>
+
+	<div id="main" class="header_top">
+		<article id="content">
+		</article>
+
+		<div id="up"><span>↑</span></div>
+
+		<footer>
+			<p>На сайте используются cookie и нестандартные шрифты (спасибо сервису <a href="http://fontello.com">Fontello</a>). Надеемся, что у вас нету проблем с этим.</p>
+			<p><a href="http://tomengine.ru">TomEngine</a> © 2014. <a href="https://vk.com/tomengine"><span class="icon-vkontakte" /></a></p>
+		</footer>
+	</div>
+</body>
+
+</html>
